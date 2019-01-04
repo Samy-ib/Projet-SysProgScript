@@ -174,3 +174,33 @@ def epissage_adn(seq, intr1, intr2):
     seq = seq.replace(intr1,"").replace(intr2,"")
     return arn_to_proteine(seq)
     
+def assem(seq, taille):
+    list_seq = [seq[start:start+taille] for start in range(0, len(seq), taille)]
+    if (len(list_seq[-1]) != len(list_seq[0])):
+        list_seq.pop()
+    return search(list_seq)
+
+def search(arr, acc=''):
+    # We now have all strings
+    if len(arr) == 0:
+        return acc
+
+    # Initial call
+    elif len(acc) == 0:
+        acc = arr.pop(0)
+        return search(arr, acc)
+
+    # Recursive call
+    else:
+        for i in range(len(arr)):
+            sample = arr[i]
+            l = len(sample)
+
+            for p in range(l // 2):
+                q = l - p
+                if acc.startswith(sample[p:]):
+                    arr.pop(i)
+                    return search(arr, sample[:p] + acc)
+                if acc.endswith(sample[:q]):
+                    arr.pop(i)
+                    return search(arr, acc + sample[q:])

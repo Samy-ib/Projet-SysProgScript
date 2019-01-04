@@ -2,10 +2,9 @@ import gui
 import sys
 from PyQt5.QtWidgets import QFileDialog
 from fonc import *
-
 # output_result = ""
 
-input_list = []
+# input_list = []
 
 # def print_output(liste):
 #     #FOnction qui servira a afficher les rsulatts
@@ -25,6 +24,8 @@ class fenetre(gui.Ui_Form):
         self.button_generate.clicked.connect(self.generate)
         self.button_valider.clicked.connect(self.valider_in)
         self.comboBox.currentIndexChanged.connect(self.combo_lineEdit)
+        self.in_textEdit.textChanged.connect(self.textChange)
+
 
         self.button_validite.clicked.connect(self.check_validite)
         self.button_frequence.clicked.connect(self.frequences)
@@ -35,6 +36,8 @@ class fenetre(gui.Ui_Form):
         self.button_freqCodon.clicked.connect(self.freqCodon)
         self.button_masseProteique.clicked.connect(self.masseProteique)
         self.button_epissage.clicked.connect(self.epissage)
+        self.button_assemblage.clicked.connect(self.assemblage)
+        self.button_sauvegarder.clicked.connect(self.save)
 
         ############# INPUT HANDEL BUTTONS #############
     
@@ -78,12 +81,15 @@ class fenetre(gui.Ui_Form):
             self.button_assemblage.setEnabled(True)
 
         self.out_textEdit.clear()
-        self.input_seq = self.in_textEdit.toPlainText()
+        self.input_seq = (self.in_textEdit.toPlainText()).upper().replace("\n","").replace(" ","")
         
 
         self.output_result = ""
 
-        ############# OUTPUT HANDEL BUTTONS #############
+    def textChange(self):
+        self.label_valider.setText('<html><head/><body><p align="center"><span style=" font-size:18pt; color:#f7b12c;">En attente de validation</span></p></body></html>')
+
+    ############# OUTPUT HANDEL BUTTONS #############
 
     def check_validite(self):
         if valide(self.input_seq):
@@ -160,7 +166,7 @@ class fenetre(gui.Ui_Form):
     def epissage(self):
         if (self.lineEdit.text().upper() in adn_to_arn(self.input_seq)) and (self.lineEdit_2.text().upper() in adn_to_arn(self.input_seq)) and self.lineEdit.text() and self.lineEdit_2.text() :
             epi = epissage_adn(adn_to_arn(self.input_seq), self.lineEdit.text().upper(), self.lineEdit_2.text().upper())
-            self.label_introns.setText('<html><head/><body><p>Introns: <span style=" color:#f7b12c;">Correct 1</span></p></body></html>')
+            self.label_introns.setText('<html><head/><body><p>Introns: <span style=" color:#f7b12c;">Correct !</span></p></body></html>')
             out = "Epissage ADN : " + epi
             if out in self.output_result:
                 self.output_result = self.output_result.replace(out + "\n\n","")
@@ -169,6 +175,26 @@ class fenetre(gui.Ui_Form):
             self.out_textEdit.setText(self.output_result)
         else:
             self.label_introns.setText('<html><head/><body><p>Introns: <span style=" color:#e82b1f;">Erreur ! </span></p></body></html>')
+
+    def assemblage(self):
+        try:
+            taille = int(self.lineEdit_4.text())
+            self.label_4.setText('<html><head/><body><p>Taille:</p></body></html>')
+            seq = assem(self.input_seq, taille)
+            out = "Assemblage : " + seq
+            if out in self.output_result:
+                self.output_result = self.output_result.replace(out + "\n\n","")
+            else:
+                self.output_result += out + "\n\n"
+            self.out_textEdit.setText(self.output_result)
+        except ValueError:
+            self.label_4.setText('<html><head/><body><p>Taille: <span style=" color:#e8291f;">Erreur</span></p></body></html>')
+        
+    def save(self):
+        self.lineEdit_3.text():
+            fichier = open(self.lineEdit_3.text()+".txt", "w")
+            fichier.write(self.output_result)
+            fichier.close()
 if __name__ == '__main__':
     app = gui.QtWidgets.QApplication(sys.argv)
     MainWindow = gui.QtWidgets.QMainWindow()
