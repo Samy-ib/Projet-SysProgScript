@@ -191,7 +191,7 @@ class fenetre(gui.Ui_Form):
             self.label_4.setText('<html><head/><body><p>Taille: <span style=" color:#e8291f;">Erreur</span></p></body></html>')
         
     def save(self):
-        self.lineEdit_3.text():
+        if(self.lineEdit_3.text()):
             fichier = open(self.lineEdit_3.text()+".txt", "w")
             fichier.write(self.output_result)
             fichier.close()
