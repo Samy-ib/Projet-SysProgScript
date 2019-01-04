@@ -14,9 +14,15 @@ ADN -> ARN
 ADN -> Proteine
 
 ARN -> Proteine
+
 Complement inverse.
+
 Calcul du taux de GC.
+
 Frequences des codons.
+
 Calcul de la mass proteique.
+
 Eppissage de l'ARN.
+
 Assemblage de l'ADN.
