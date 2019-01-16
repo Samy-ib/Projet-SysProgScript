@@ -65,8 +65,12 @@ class fenetre(gui.Ui_Form):
         self.label_valider.setText('<html><head/><body><p align="center"><span style=" font-size:18pt; color:#f7b12c;;">En attente de validation</span></p></body></html>')
     
     def valider_in(self):
+        self.input_seq = (self.in_textEdit.toPlainText()).upper().replace("\n","").replace(" ","")
+
         if(not self.in_textEdit.toPlainText()):
-            self.label_valider.setText('<html><head/><body><p align="center"><span style=" font-size:18pt; color:#f7b12c;;">Aucune sequence !</span></p></body></html>')
+            self.label_valider.setText('<html><head/><body><p align="center"><span style=" font-size:18pt; color:#AF3D35;;">Aucune sequence !</span></p></body></html>')
+        elif not valide(self.input_seq):
+            self.label_valider.setText('<html><head/><body><p align="center"><span style=" font-size:18pt; color:#AF3D35;;">Sequence non valide !</span></p></body></html>')
         else:
             self.label_valider.setText('<html><head/><body><p align="center"><span style=" font-size:18pt; color:#f7b12c;">Sequence validee !</span></p></body></html>')
             self.button_validite.setEnabled(True)
@@ -81,7 +85,6 @@ class fenetre(gui.Ui_Form):
             self.button_assemblage.setEnabled(True)
 
         self.out_textEdit.clear()
-        self.input_seq = (self.in_textEdit.toPlainText()).upper().replace("\n","").replace(" ","")
         
 
         self.output_result = ""
