@@ -48,7 +48,7 @@ class fenetre(gui.Ui_Form):
 
     def importer(self):
         filename =QFileDialog.getOpenFileName(MainWindow,"QFileDialog.getOpenFileName()", "","Fichier Fasta (*.fas)")
-        if(filename):
+        if(filename[0]):
             self.in_textEdit.setText(str(self.parse_fasta(filename[0])))
             self.label_valider.setText('<html><head/><body><p align="center"><span style=" font-size:18pt; color:#f7b12c;;">En attente de validation</span></p></body></html>')
             self.comboBox.clear()
