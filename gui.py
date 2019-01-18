@@ -24,12 +24,12 @@ class Ui_Form(object):
 "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(27, 55, 68, 255), stop:1 rgba(0, 171, 164, 255));\n"
 "")
         self.button_generate = QtWidgets.QPushButton(Form)
-        self.button_generate.setGeometry(QtCore.QRect(20, 330, 141, 31))
+        self.button_generate.setGeometry(QtCore.QRect(20, 340, 141, 31))
         self.button_generate.setStyleSheet("background-color: rgba(7, 163, 148,0.5);\n"
 "color: rgba(0, 0, 0,0.8)")
         self.button_generate.setObjectName("button_generate")
         self.button_import = QtWidgets.QPushButton(Form)
-        self.button_import.setGeometry(QtCore.QRect(200, 330, 141, 31))
+        self.button_import.setGeometry(QtCore.QRect(200, 340, 141, 31))
         self.button_import.setStyleSheet("background-color: rgba(7, 163, 148,0.5);color: rgba(0, 0, 0,0.8)")
         self.button_import.setObjectName("button_import")
         self.label = QtWidgets.QLabel(Form)
@@ -327,7 +327,7 @@ class Ui_Form(object):
         self.out_textEdit.setReadOnly(True)
         self.out_textEdit.setObjectName("out_textEdit")
         self.button_valider = QtWidgets.QPushButton(Form)
-        self.button_valider.setGeometry(QtCore.QRect(110, 380, 141, 31))
+        self.button_valider.setGeometry(QtCore.QRect(110, 390, 141, 31))
         self.button_valider.setStyleSheet("background-color: rgba(7, 163, 148,0.5);color: rgba(0, 0, 0,0.8)")
         self.button_valider.setCheckable(False)
         self.button_valider.setObjectName("button_valider")
@@ -337,11 +337,11 @@ class Ui_Form(object):
 "color: rgba(166, 212, 194,1);")
         self.label_3.setObjectName("label_3")
         self.label_valider = QtWidgets.QLabel(Form)
-        self.label_valider.setGeometry(QtCore.QRect(30, 420, 311, 51))
+        self.label_valider.setGeometry(QtCore.QRect(30, 430, 311, 51))
         self.label_valider.setStyleSheet("background: rgba(0,0,0,0.01);")
         self.label_valider.setObjectName("label_valider")
         self.comboBox = QtWidgets.QComboBox(Form)
-        self.comboBox.setGeometry(QtCore.QRect(360, 90, 83, 29))
+        self.comboBox.setGeometry(QtCore.QRect(360, 120, 83, 29))
         self.comboBox.setStyleSheet("background-color: rgba(0, 151, 167,0.5);")
         self.comboBox.setObjectName("comboBox")
         self.label_introns = QtWidgets.QLabel(Form)
@@ -412,6 +412,10 @@ class Ui_Form(object):
 "color: rgb(166, 212, 194);")
         self.lineEdit_4.setMaxLength(3)
         self.lineEdit_4.setObjectName("lineEdit_4")
+        self.label_5 = QtWidgets.QLabel(Form)
+        self.label_5.setGeometry(QtCore.QRect(0, 0, 31, 31))
+        self.label_5.setStyleSheet("background-color: rgba(255, 255, 255,0);")
+        self.label_5.setObjectName("label_5")
 
         self.retranslateUi(Form)
         self.validite_button_2.clicked.connect(Form.close)
@@ -441,13 +445,13 @@ class Ui_Form(object):
         self.in_textEdit.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Inconsolata\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:456;\">ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'Inconsolata\'; font-size:10pt; font-weight:456; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG</p></body></html>"))
         self.out_textEdit.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Inconsolata\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:456;\"><br /></p></body></html>"))
+"</style></head><body style=\" font-family:\'Inconsolata\'; font-size:10pt; font-weight:456; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.button_valider.setText(_translate("Form", "Valider"))
         self.label_3.setText(_translate("Form", "<html><head/><body><p>Veuillez soit generer une sequence ADN aleatoire </p><p>ou bien importer un fichier fasta.</p><p>Une fois ceci fait, cliquez sur les bouton &quot;valider&quot;.</p></body></html>"))
         self.label_valider.setText(_translate("Form", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#f7b12c;;\">En attente de validation</span></p></body></html>"))
@@ -456,4 +460,6 @@ class Ui_Form(object):
         self.lineEdit_2.setText(_translate("Form", "AUCGGUCGAGCGUGU"))
         self.label_introns_2.setText(_translate("Form", "<html><head/><body><p>Nom de votre fichier :</p></body></html>"))
         self.label_4.setText(_translate("Form", "<html><head/><body><p>Taille:</p></body></html>"))
+        self.label_5.setText(_translate("Form", "<html><head/><body><p><img src=\":/dna/dna(1).png\"/></p></body></html>"))
 
+import rsc_rc
