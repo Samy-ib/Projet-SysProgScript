@@ -2,14 +2,6 @@ import gui
 import sys
 from PyQt5.QtWidgets import QFileDialog
 from fonc import *
-# output_result = ""
-
-# input_list = []
-
-# def print_output(liste):
-#     #FOnction qui servira a afficher les rsulatts
-
-
 
 class fenetre(gui.Ui_Form):
     
