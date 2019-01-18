@@ -135,23 +135,32 @@ def taux_gc(seq):
 def freq_codon(seq):
     """
        Fréquence des codons.
-       La séquence ADN est d'abord transfomer en ARN,
-       la séquence ARN est ensuite diviser en plusieurs 
-       sous chaine de contenant chacune 3 nucléotide, le
-       tout étant stocker dans une liste.
+       En transforme d'abbord notre séquence en protéine.
        Cette liste est ensuite donner en paramètre a la fonction 
        "Counter" du module "collection" qui nous renvois un dictionnaire
-       de la fréquence de chaque triplet de nucléotide qui nous donne donc 
-       la fréquence de codons
+       de la fréquence de chaque codon.
+       Ce dernier est transformer en liste avant d'être transformer en une chaine
+       pour être afficher.
     """
+    table = {
+            'F': 'Phenylalanine',       'I': 'Isoleucine',      'V': 'Valine',      'L': 'Leucine',         
+            'M': 'Methionine',          'S': 'Serine',          'P': 'Proline',     'T': 'Threonine',
+            'A': 'Alanine',             'Y': 'Tyrosine',        'H': 'Histidine',   'N': 'Asparagine',     
+            'D': 'Acide Aspartique',    '_': 'Codon Stop',      'Q': 'Glutamine',   'K': 'Lysine',     
+            'E': 'Acide Glutamique',    'C': 'Cysteine',        'R': 'Arginine',    'G': 'Glycine',
+            'W': 'Tryptophane'
+        }
     if len(seq)%3 != 0 :
         seq = seq[:-(len(seq)%3)]
     freq = ""
-    seq=adn_to_arn(seq)
-    list_codon = [seq[start:start+3] for start in range(0, len(seq), 3)]
-    dict_codon = dict(Counter(list_codon))
-    for x in dict_codon:
-        freq += x + " : " + str(dict_codon[x]) +"\n"
+    seq=adn_to_proteine(seq)
+    count=dict((Counter(list(seq))))
+    l=[]
+    [l.extend([k,v]) for k,v in count.items()]
+    for i in range(0,len(l), 2):
+        l[i] = table[l[i]]
+    for x in range(0,len(l),2):
+        freq += l[x] + " : " + str(l[x+1]) +"\n"
     return freq
 
 def masse_proteique(seq):
@@ -181,7 +190,12 @@ def assem(seq, taille):
         list_seq.pop()
     return search(list_seq)
 
-def my_overlap(s1,s2):
+def my_overlap(s1,s2): 
+    """
+        Reçoit deux chaines de caractères et nous retourne la plus petite
+        chaine contenant s1 et s2. ainsi que le nombre de nombre de caracteres
+        communs entre les deux.
+    """
     if s2 in s1:
         return [s1, len(s2)]
     elif s1 in s2:
@@ -195,6 +209,11 @@ def my_overlap(s1,s2):
     return [s1+s2,0]
 
 def my_most_overlap(seqs):                            # SEQ NAME, OVERLAPPING STRINGS, SEQ1 ID, SEQ2 ID
+    """
+        On lui donne une liste de chaine de caracteres(Liste de sequences)
+        elle nous retourne la position dans cette liste des 2 première chaînes
+        avec le plus de sous chaine comune (most overlaping strings).
+    """
     L=[]
     for i in range(len(seqs)):
         for j in range(len(seqs)):
@@ -207,6 +226,11 @@ def my_most_overlap(seqs):                            # SEQ NAME, OVERLAPPING ST
     return L[li,2:].tolist()
 
 def search(seqs):
+    """
+        Concatène les deux chaine les plus "Overlapper" a chaque itterations
+        tout en supprimant une des deux chaînes (La seconde reçoit le résultat de la concaténation).
+        Ceci s'arrête quand la longueur de la liste est égale a 1.
+    """
     while(len(seqs)>1):
         ov=my_most_overlap(seqs)
         seqs[int(ov[0])]=my_overlap(seqs[int(ov[0])], seqs[int(ov[1])])[0]
