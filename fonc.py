@@ -163,6 +163,29 @@ def freq_codon(seq):
         freq += l[x] + " : " + str(l[x+1]) +"\n"
     return freq
 
+
+# def freq_codon(seq):
+#     """
+#        Fréquence des codons.
+#        La séquence ADN est d'abord transfomer en ARN,
+#        la séquence ARN est ensuite diviser en plusieurs 
+#        sous chaine de contenant chacune 3 nucléotide, le
+#        tout étant stocker dans une liste.
+#        Cette liste est ensuite donner en paramètre a la fonction 
+#        "Counter" du module "collection" qui nous renvois un dictionnaire
+#        de la fréquence de chaque triplet de nucléotide qui nous donne donc 
+#        la fréquence de codons
+#     """
+#     if len(seq)%3 != 0 :
+#         seq = seq[:-(len(seq)%3)]
+#     freq = ""
+#     seq=adn_to_arn(seq)
+#     list_codon = [seq[start:start+3] for start in range(0, len(seq), 3)]
+#     dict_codon = dict(Counter(list_codon))
+#     for x in dict_codon:
+#         freq += x + " : " + str(dict_codon[x]) +"\n"
+# return freq
+
 def masse_proteique(seq):
     """
        Calcul de la masse protéique a l'aide
