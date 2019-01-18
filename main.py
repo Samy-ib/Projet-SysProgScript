@@ -195,7 +195,7 @@ class fenetre(gui.Ui_Form):
         
     def save(self):
         if(self.lineEdit_3.text()):
-            fichier = open(self.lineEdit_3.text()+".txt", "w")
+            fichier = open("./saves/"+self.lineEdit_3.text()+".txt", "w")
             fichier.write(self.output_result)
             fichier.close()
 if __name__ == '__main__':

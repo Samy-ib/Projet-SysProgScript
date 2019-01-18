@@ -1,0 +1,33 @@
+Frequence des codons :
+AUG : 1
+GUC : 1
+UAC : 1
+AUA : 2
+GCU : 1
+GAC : 1
+AAA : 1
+CAG : 1
+CAC : 1
+GUA : 1
+GCA : 1
+AUC : 2
+GGU : 1
+CGA : 1
+UCG : 2
+AGA : 1
+GGC : 1
+UGG : 1
+UCA : 1
+CAU : 1
+GAU : 1
+CGG : 1
+AGC : 1
+GUG : 1
+UUU : 1
+CAA : 1
+AGU : 1
+UUG : 1
+CGC : 1
+CUA : 1
+
+
