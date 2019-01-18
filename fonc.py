@@ -135,7 +135,7 @@ def taux_gc(seq):
 def freq_codon(seq):
     """
        Fréquence des codons.
-       En transforme d'abbord notre séquence en protéine.
+       On transforme d'abbord notre séquence en protéine.
        Cette liste est ensuite donner en paramètre a la fonction 
        "Counter" du module "collection" qui nous renvois un dictionnaire
        de la fréquence de chaque codon.
