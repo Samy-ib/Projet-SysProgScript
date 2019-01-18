@@ -1,6 +1,7 @@
 from Bio import SeqIO
 from collections import Counter
 import random
+import numpy as np
 
 
 
@@ -180,27 +181,34 @@ def assem(seq, taille):
         list_seq.pop()
     return search(list_seq)
 
-def search(arr, acc=''):
-    # We now have all strings
-    if len(arr) == 0:
-        return acc
+def my_overlap(s1,s2):
+    if s2 in s1:
+        return [s1, len(s2)]
+    elif s1 in s2:
+        return [s2, len(s1)]
 
-    # Initial call
-    elif len(acc) == 0:
-        acc = arr.pop(0)
-        return search(arr, acc)
+    for i in range(1, len(s2)):
+        if s1.startswith(s2[i:]):
+            return [s2[:i] + s1,i]
+        if s1.endswith(s2[:-i]):
+            return [s1 + s2[-i:],i]
+    return [s1+s2,0]
 
-    # Recursive call
-    else:
-        for i in range(len(arr)):
-            sample = arr[i]
-            l = len(sample)
+def my_most_overlap(seqs):                            # SEQ NAME, OVERLAPPING STRINGS, SEQ1 ID, SEQ2 ID
+    L=[]
+    for i in range(len(seqs)):
+        for j in range(len(seqs)):
+            if j!=i :
+                ovl=my_overlap(seqs[i],seqs[j])
+                ovl.extend([i,j])
+                L.append(ovl)
+    L = np.array(L)
+    li=np.argmax(L[:,1],axis=0)
+    return L[li,2:].tolist()
 
-            for p in range(l // 2):
-                q = l - p
-                if acc.startswith(sample[p:]):
-                    arr.pop(i)
-                    return search(arr, sample[:p] + acc)
-                if acc.endswith(sample[:q]):
-                    arr.pop(i)
-                    return search(arr, acc + sample[q:])
+def search(seqs):
+    while(len(seqs)>1):
+        ov=my_most_overlap(seqs)
+        seqs[int(ov[0])]=my_overlap(seqs[int(ov[0])], seqs[int(ov[1])])[0]
+        del seqs[int(ov[1])]
+    return seqs[0]
